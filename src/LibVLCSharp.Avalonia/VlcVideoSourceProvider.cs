@@ -54,9 +54,10 @@ namespace LibVLCSharp.Avalonia
         {
             MediaPlayer = player;
 
-            var c = new vlc.MediaPlayer.LibVLCVideoCleanupCb(CleanupCallback);
+            // TODO investigation - https://github.com/donandren/vlcsharpavalonia/issues/19#issuecomment-956037995
+            //var c = new vlc.MediaPlayer.LibVLCVideoCleanupCb(CleanupCallback);
             var f = new vlc.MediaPlayer.LibVLCVideoFormatCb(VideoFormatCallback);
-            MediaPlayer.SetVideoFormatCallbacks(f, c);
+            MediaPlayer.SetVideoFormatCallbacks(f, null);
 
             var lv = new vlc.MediaPlayer.LibVLCVideoLockCb(LockVideo);
             var uv = new vlc.MediaPlayer.LibVLCVideoUnlockCb(UnlockVideo);
@@ -64,7 +65,7 @@ namespace LibVLCSharp.Avalonia
             MediaPlayer.SetVideoCallbacks(lv, uv, d);
 
             //we need GC not collect delegates
-            _callbacks = new object[] { c, f, lv, uv, d };
+            _callbacks = new object[] { null, f, lv, uv, d };
         }
 
         /// <summary>
