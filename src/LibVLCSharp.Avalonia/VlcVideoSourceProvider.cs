@@ -127,6 +127,10 @@ namespace LibVLCSharp.Avalonia
         //     callback [IN]
         private void DisplayVideo(IntPtr opaque, IntPtr picture)
         {
+            if (_videoSource == null)
+            {
+                return;
+            }
             _videoSource.Write(_formatSize, new Vector(96, 96), _pixelFormat,
                 fb =>
                 {
