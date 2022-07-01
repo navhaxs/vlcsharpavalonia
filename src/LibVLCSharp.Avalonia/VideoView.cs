@@ -19,6 +19,19 @@ namespace LibVLCSharp.Avalonia
         public VideoView()
         {
             VlcRenderingOptions = LibVLCAvaloniaOptions.RenderingOptions;
+
+            this.Initialized += VideoView_Initialized;
+            this.TemplateApplied += VideoView_TemplateApplied;
+        }
+
+        private void VideoView_Initialized(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.Print("VideoView_Initialized");
+        }
+
+        private void VideoView_TemplateApplied(object sender, TemplateAppliedEventArgs e)
+        {
+            System.Diagnostics.Debug.Print("VideoView_TemplateApplied");
         }
 
         private VlcVideoSourceProvider _provider = new VlcVideoSourceProvider();
@@ -93,6 +106,8 @@ namespace LibVLCSharp.Avalonia
 
                 if (MediaPlayer.IsPlaying)
                     throw new NotSupportedException("Player should be stopped during initialization!");
+
+                System.Diagnostics.Debug.Print("InitMediaPlayer");
 
                 if (VlcRenderingOptions != LibVLCAvaloniaRenderingOptions.VlcNative)
                 {
