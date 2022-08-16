@@ -22,6 +22,12 @@ namespace LibVLCSharp.Avalonia
 
             this.Initialized += VideoView_Initialized;
             this.TemplateApplied += VideoView_TemplateApplied;
+            this.DetachedFromLogicalTree += VideoView_DetachedFromLogicalTree;
+        }
+
+        private void VideoView_DetachedFromLogicalTree(object sender, global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs e)
+        {
+            MediaPlayer?.Stop();
         }
 
         private void VideoView_Initialized(object sender, EventArgs e)
@@ -103,6 +109,9 @@ namespace LibVLCSharp.Avalonia
             {
                 _playerEvents?.Dispose();
                 _playerEvents = null;
+
+                if (MediaPlayer == null)
+                    return;
 
                 if (MediaPlayer.IsPlaying)
                     throw new NotSupportedException("Player should be stopped during initialization!");
