@@ -91,6 +91,9 @@ namespace LibVLCSharp.Avalonia
                 _playerEvents?.Dispose();
                 _playerEvents = null;
 
+                if (MediaPlayer == null)
+                    return;
+
                 if (MediaPlayer.IsPlaying)
                     throw new NotSupportedException("Player should be stopped during initialization!");
 
