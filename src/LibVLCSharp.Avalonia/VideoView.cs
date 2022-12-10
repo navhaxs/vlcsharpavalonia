@@ -114,7 +114,10 @@ namespace LibVLCSharp.Avalonia
                     return;
 
                 if (MediaPlayer.IsPlaying)
-                    throw new NotSupportedException("Player should be stopped during initialization!");
+                {
+                    System.Diagnostics.Debug.Print("Player should be stopped during initialization!");
+                    return;
+                }
 
                 System.Diagnostics.Debug.Print("InitMediaPlayer");
 
