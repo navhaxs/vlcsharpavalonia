@@ -5,7 +5,6 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Avalonia.Rendering.SceneGraph;
 using Avalonia.Threading;
-using Avalonia.Visuals.Media.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -254,11 +253,11 @@ namespace LibVLCSharp.Avalonia
             {
                 if (Enabled)
                 {
-                    _text = _text != null && _rendered % UpdateStatsPerFrames != 0 ?
-                                    _text :
-                                    new FormattedText() { Text = $"{info}\n{ToString()}", FontSize = 12, Typeface = Typeface.Default };
-                    context.DrawRectangle(Brushes.Black, null, _text.Bounds.Translate(new Vector(x, y)));
-                    context.DrawText(Brushes.White, new Point(x, y), _text.PlatformImpl);
+                    //_text = _text != null && _rendered % UpdateStatsPerFrames != 0 ?
+                    //                _text :
+                    //                new FormattedText() { Text = $"{info}\n{ToString()}", FontSize = 12, Typeface = Typeface.Default };
+                    //context.DrawRectangle(Brushes.Black, null, _text.Bounds.Translate(new Vector(x, y)));
+                    //context.DrawText(Brushes.White, new Point(x, y), _text.PlatformImpl);
                 }
             }
         }

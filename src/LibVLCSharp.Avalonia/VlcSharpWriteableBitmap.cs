@@ -4,7 +4,6 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Avalonia.Threading;
 using Avalonia.Utilities;
-using Avalonia.Visuals.Media.Imaging;
 using System;
 using System.IO;
 using System.Reactive;
@@ -87,9 +86,9 @@ namespace LibVLCSharp.Avalonia
             NotifyRendered();
         }
 
-        public void Save(string fileName) => Read(b => b.Save(fileName));
+        public void Save(string fileName, int? quality = null) => Read(b => b.Save(fileName));
 
-        public void Save(Stream stream) => Read(b => b.Save(stream));
+        public void Save(Stream stream, int? quality = null) => Read(b => b.Save(stream));
 
         public void Write(PixelSize size, Vector dpi, PixelFormat format, Action<ILockedFramebuffer> action)
         {
